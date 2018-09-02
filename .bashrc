@@ -1,0 +1,6 @@
+alias work="cd c:/projects"
+alias derm="cd e:/projects/derm"
+alias runserver="pipenv run python manage.py runserver"
+alias collectstatic="pipenv run python manage.py collectstatic --noinput"
+alias migrate="pipenv run python manage.py migrate"
+alias makemigrations="pipenv run python manage.py makemigrations"

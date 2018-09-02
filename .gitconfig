@@ -1,0 +1,127 @@
+[user]
+	name = Gal Ben Haim
+	email = gal_ben_haim@yahoo.com
+
+[sendemail]
+	from = Gal Ben Haim <gal@xxxxxxx>
+	smtpserver = smtp.gmail.com
+	smtpserverport = 465
+	smtpencryption = ssl
+	smtpdomain = xxxxxx.com
+	smtpuser = gal@xxxxxx.com
+	smtppass = passwd
+	suppresscc = all
+	suppressfrom = yes
+	signedoffbycc = no
+	chainreplyto = no
+
+[fetch]
+	prune = true
+
+[push]
+	default = nothing
+
+[branch]
+	autosetuprebase = always
+
+[core]
+	whitespace = trailing-space,space-before-tab
+	editor = vim
+	excludesfile = 
+	autocrlf = input
+[diff]
+	tool = kdiff3
+
+[difftool]
+	prompt = false
+
+[color]
+	ui = true
+	branch = auto
+	diff = auto
+	status = auto
+
+#[color "branch"]
+#	current = yellow bold
+#	local = normal
+#	remote = green
+
+#[color "diff"]
+#	plain = normal
+#	meta = yellow bold
+#	frag = magenta bold
+#	old = red bold
+#	new = green bold
+
+#[color "status"]
+#	header = normal
+#	branch = yellow bold
+#	nobranch = magenta
+#	added = green
+#	changed = red
+#	untracked = yellow
+
+[color "grep"]
+	external = --color=always
+
+[guitool "Rebase onto..."]
+	cmd = git rebase
+	revprompt = yes
+[guitool "Rebase/Continue"]
+	cmd = git rebase --continue
+[guitool "Rebase/Skip"]
+	cmd = git rebase --skip
+[guitool "Rebase/Abort"]
+	cmd = git rebase --abort
+[guitool "Pull with Rebase"]
+	cmd = git pull --rebase
+
+[alias]
+	st = status -b
+	br = branch
+	df = diff --ws-error-highlight=all
+	co = checkout
+	push-tags = push --tags
+	clean-fxd = clean -fxd
+	add-commit = commit -a
+	reset-head = reset --hard HEAD
+	ls = log --oneline --decorate
+	ll = log --oneline --graph --all --pretty --decorate --date=iso
+	lq = log --oneline --graph --pretty --decorate --date=iso
+	lf = log --graph --all --format=format:'%C(yellow)%h%C(reset) - %C(blue)%ci%C(reset) %C(red)%d%C(reset)%n''  %C(normal)%s%C(reset) %C(bold)- %an %C(dim)<%cE> %C(reset)' --abbrev-commit
+	unstage = reset HEAD --
+	untrack = rm --cached --
+	visual = !gitk
+	spull = subtree pull --squash
+	back = !git checkout `git reflog | head -n 2 | tail -n 1 | \
+		sed -e 's/. HEAD.*//' | awk '{print $NF}' | sed -e 's/(//g'`
+       log-pretty  = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"	
+
+
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 700x550+0+59
+	main-window-view = FileView
+
+[merge]
+	tool = kdiff3
+	keepBackup = false
+
+[mergetool "p4merge"]
+	cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	trustExitCode = false
+
+[difftool "p4diff"]
+	cmd = p4diff "$LOCAL" "$REMOTE"
+
+[log]
+	decorate = true
+[credential]
+	helper = store
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
